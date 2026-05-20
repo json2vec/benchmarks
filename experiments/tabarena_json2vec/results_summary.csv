@@ -1,0 +1,29 @@
+scope,tid,dataset,model_or_config,metric,metric_error,metric_error_val,notes
+focused,363621,blood-transfusion-service-center,RandomForest_c1_BAG_L1,roc_auc,0.314211,0.297034,TabArena built-in RF baseline on same TabArena-Lite task; 2 bag folds; no random RF configs
+focused,363621,blood-transfusion-service-center,json2vec_d8_b16_lr0.003_e3,roc_auc,0.312018,0.327866,first json2vec win over RF
+focused,363621,blood-transfusion-service-center,json2vec_d8_b16_lr0.01_e4,roc_auc,0.253158,0.312489,tight sweep best
+focused,363621,blood-transfusion-service-center,json2vec_d8_b16_lr0.02_e4,roc_auc,0.236316,0.325591,ridge sweep best
+focused,363621,blood-transfusion-service-center,json2vec_d8_b16_lr0.022_e5,roc_auc,0.233947,0.312756,fine-grid best supervised-only
+focused_pretrain,363621,blood-transfusion-service-center,json2vec_pre_e2_mask0.20_lr0.01_then_supervised,roc_auc,0.259035,0.384880,best masked-pretraining run; worse than supervised-only
+small_suite,363621,blood-transfusion-service-center,json2vec_d64_b32_lr0.0003_e1,roc_auc,0.365789,0.414630,best broad-search config run on all small datasets
+small_suite,363629,diabetes,json2vec_d64_b32_lr0.0003_e1,roc_auc,0.498327,0.527013,
+small_suite,363614,anneal,json2vec_d64_b32_lr0.0003_e1,log_loss,1.143177,1.153651,
+small_suite,363698,QSAR_fish_toxicity,json2vec_d64_b32_lr0.0003_e1,rmse,1.492775,1.482966,
+small_suite,363626,credit-g,json2vec_d64_b32_lr0.0003_e1,roc_auc,0.412436,0.476776,
+small_suite,363685,maternal_health_risk,json2vec_d64_b32_lr0.0003_e1,log_loss,1.122985,1.123430,
+small_suite,363625,concrete_compressive_strength,json2vec_d64_b32_lr0.0003_e1,rmse,17.011894,16.779784,
+small_suite,363696,qsar-biodeg,json2vec_d64_b32_lr0.0003_e1,roc_auc,0.416345,0.456136,
+small_suite,363675,healthcare_insurance_expenses,json2vec_d64_b32_lr0.0003_e1,rmse,11829.446389,13028.312372,
+small_suite,363707,website_phishing,json2vec_d64_b32_lr0.0003_e1,log_loss,0.872346,0.872391,
+small_suite,363671,Fitness_Club,json2vec_d64_b32_lr0.0003_e1,roc_auc,0.430581,0.477258,
+small_suite_custom_rf,363621,blood-transfusion-service-center,CustomRandomForest_50,roc_auc,0.321974,0.296186,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363629,diabetes,CustomRandomForest_50,roc_auc,0.174465,0.199615,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363614,anneal,CustomRandomForest_50,log_loss,0.084717,0.082016,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363698,QSAR_fish_toxicity,CustomRandomForest_50,rmse,0.947446,0.969574,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363626,credit-g,CustomRandomForest_50,roc_auc,0.243547,0.235021,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363685,maternal_health_risk,CustomRandomForest_50,log_loss,0.545868,0.652745,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363625,concrete_compressive_strength,CustomRandomForest_50,rmse,6.158364,6.141875,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363696,qsar-biodeg,CustomRandomForest_50,roc_auc,0.088199,0.074234,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363675,healthcare_insurance_expenses,CustomRandomForest_50,rmse,4383.737966,4998.024276,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363707,website_phishing,CustomRandomForest_50,log_loss,0.332898,0.364359,older tutorial custom RF run; not TabArena built-in RF
+small_suite_custom_rf,363671,Fitness_Club,CustomRandomForest_50,roc_auc,0.226889,0.236582,older tutorial custom RF run; not TabArena built-in RF
