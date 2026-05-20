@@ -1,20 +1,19 @@
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
-JSON2VEC_REPO = Path(os.environ.get("JSON2VEC_REPO", ROOT.parent / "json2vec"))
-if (JSON2VEC_REPO / "src").exists():
-    sys.path.insert(0, str(JSON2VEC_REPO / "src"))
-elif (ROOT / "src").exists():
-    sys.path.insert(0, str(ROOT / "src"))
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from json2vec_ag_model import JSON2VecTabArenaModel
+EXPERIMENT_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(EXPERIMENT_DIR))
+
+from tabarena_json2vec.paths import configure_import_paths
+
+configure_import_paths()
+
+from tabarena_json2vec import JSON2VecTabArenaModel
 
 
 def run_case(name: str, extra_params: dict) -> None:
@@ -43,7 +42,6 @@ def run_case(name: str, extra_params: dict) -> None:
 
     proba = model.predict_proba(X)
     pred = model.predict(X)
-
     print(
         {
             "case": name,

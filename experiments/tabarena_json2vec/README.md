@@ -4,10 +4,12 @@ This folder contains the local TabArena integration used to test `json2vec` as a
 
 ## What Is Included
 
-- `json2vec_ag_model.py`: AutoGluon `AbstractModel` adapter for json2vec.
-- `run_tabarena_lite.py`: TabArena-Lite runner for json2vec.
-- `run_tabarena_rf_baseline.py`: TabArena RandomForest baseline runner using TabArena's built-in RF generator.
-- `smoke_check.py`: tiny local adapter check covering supervised training and masked pretraining.
+- `tabarena_json2vec/ag_model.py`: AutoGluon `AbstractModel` adapter for json2vec.
+- `tabarena_json2vec/paths.py`: shared repository, json2vec, and TabArena path setup.
+- `tabarena_json2vec/tabarena.py`: shared TabArena task selection and result printing helpers.
+- `scripts/run_json2vec.py`: TabArena-Lite runner for json2vec.
+- `scripts/run_random_forest.py`: TabArena RandomForest baseline runner using TabArena's built-in RF generator.
+- `scripts/smoke_check.py`: tiny local adapter check covering supervised training and masked pretraining.
 - `results_summary.csv`: key benchmark results from the local MacBook runs.
 - `commands.md`: exact commands/configs for reproducing the main runs.
 - `best_blood_config.env`: env-file form of the best focused benchmark config.
