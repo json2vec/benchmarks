@@ -27,3 +27,9 @@ small_suite_custom_rf,363696,qsar-biodeg,CustomRandomForest_50,roc_auc,0.088199,
 small_suite_custom_rf,363675,healthcare_insurance_expenses,CustomRandomForest_50,rmse,4383.737966,4998.024276,older tutorial custom RF run; not TabArena built-in RF
 small_suite_custom_rf,363707,website_phishing,CustomRandomForest_50,log_loss,0.332898,0.364359,older tutorial custom RF run; not TabArena built-in RF
 small_suite_custom_rf,363671,Fitness_Club,CustomRandomForest_50,roc_auc,0.226889,0.236582,older tutorial custom RF run; not TabArena built-in RF
+mini_suite_fixed_config,363621,blood-transfusion-service-center,json2vec_d16_b32_lr0.001_e1,roc_auc,0.418509,0.438827,TabArena-Lite fixed three-task mini-suite; 2 bag folds; cache ignored; no per-task tuning
+mini_suite_fixed_config,363629,diabetes,json2vec_d16_b32_lr0.001_e1,roc_auc,0.380656,0.377161,TabArena-Lite fixed three-task mini-suite; 2 bag folds; cache ignored; no per-task tuning
+mini_suite_fixed_config,363625,concrete_compressive_strength,json2vec_d16_b32_lr0.001_e1,rmse,16.986025,16.580989,TabArena-Lite fixed three-task mini-suite; 2 bag folds; cache ignored; no per-task tuning
+mini_suite_rf_baseline,363621,blood-transfusion-service-center,RandomForest_c1_BAG_L1,roc_auc,0.314211,0.297034,TabArena-Lite fixed three-task mini-suite baseline; 2 bag folds; no random RF configs; cache ignored
+mini_suite_rf_baseline,363629,diabetes,RandomForest_c1_BAG_L1,roc_auc,0.165228,0.185191,TabArena-Lite fixed three-task mini-suite baseline; 2 bag folds; no random RF configs; cache ignored
+mini_suite_rf_baseline,363625,concrete_compressive_strength,RandomForest_c1_BAG_L1,rmse,6.084826,6.095457,TabArena-Lite fixed three-task mini-suite baseline; 2 bag folds; no random RF configs; cache ignored
