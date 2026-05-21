@@ -68,6 +68,41 @@ RF_NUM_RANDOM_CONFIGS=0 \
 ../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/run_random_forest.py
 ```
 
+## Clean 4-Task Matrix json2vec Run
+
+```bash
+TABARENA_CACHE_MODE=ignore \
+TABARENA_TASK_IDS=363621,363629,363625,363626 \
+TABARENA_RESULTS_SCOPE=matrix_4task_json2vec_fixed \
+TABARENA_RESULTS_NOTES="clean 4-task matrix; fixed json2vec baseline d16 b32 lr0.001 e1; 2 bag folds; cache ignored" \
+JSON2VEC_D_MODEL=16 \
+JSON2VEC_BATCH_SIZE=32 \
+JSON2VEC_LR=0.001 \
+JSON2VEC_MAX_EPOCHS=1 \
+JSON2VEC_ATTENTION=none \
+JSON2VEC_NUM_BAG_FOLDS=2 \
+JSON2VEC_RANDOM_SEED=0 \
+../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/run_json2vec.py
+```
+
+## Clean 4-Task Matrix RandomForest Run
+
+```bash
+TABARENA_CACHE_MODE=ignore \
+TABARENA_TASK_IDS=363621,363629,363625,363626 \
+TABARENA_RESULTS_SCOPE=matrix_4task_rf \
+TABARENA_RESULTS_NOTES="clean 4-task matrix; TabArena built-in RF baseline; 2 bag folds; no random RF configs; cache ignored" \
+RF_NUM_BAG_FOLDS=2 \
+RF_NUM_RANDOM_CONFIGS=0 \
+../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/run_random_forest.py
+```
+
+## Clean 4-Task Matrix Summary
+
+```bash
+../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/summarize_matrix.py
+```
+
 ## 11 Small-Dataset json2vec Run
 
 ```bash
