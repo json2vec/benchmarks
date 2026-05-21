@@ -13,7 +13,7 @@ This folder contains the local TabArena integration used to test `json2vec` as a
 - `scripts/run_json2vec.py`: TabArena-Lite runner for json2vec.
 - `scripts/run_random_forest.py`: TabArena RandomForest baseline runner using TabArena's built-in RF generator.
 - `scripts/smoke_check.py`: tiny local adapter check covering supervised training and masked pretraining.
-- `results_summary.csv`: curated benchmark result snapshots.
+- `results.csv`: benchmark result rows written by runner scripts and historical imports.
 - `commands.md`: exact commands/configs for reproducing the main runs.
 - `best_blood_config.env`: env-file form of the best focused benchmark config.
 
@@ -103,9 +103,8 @@ Run-level result rows are written to CSV with this schema:
 scope,tid,dataset,problem_type,model_or_config,metric,metric_error,metric_error_val,time_train_s,time_infer_s,notes
 ```
 
-Use `results.csv` for raw appended runner output and `results_summary.csv` for
-curated snapshots that should be preserved in git. README files should describe
-protocols and commands, not embed benchmark statistics.
+Use `results.csv` as the single place for benchmark statistics. README files
+should describe protocols and commands, not embed benchmark result tables.
 
 ## Development Notes
 
