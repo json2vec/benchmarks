@@ -39,6 +39,9 @@ class TabArenaRunConfig:
     cache_mode: str
     repetitions_mode: str
     output_dir: Path
+    results_csv: Path | None
+    results_scope: str
+    results_notes: str
     debug_mode: bool
     raise_on_failure: bool
 
@@ -47,10 +50,19 @@ class TabArenaRunConfig:
         cls,
         *,
         default_output_dir: Path,
+        default_results_scope: str,
         default_task_limit: int = 1,
         env: Mapping[str, str] | None = None,
     ) -> "TabArenaRunConfig":
         values = os.environ if env is None else env
+        results_csv = values.get("TABARENA_RESULTS_CSV")
+        if results_csv is None:
+            results_csv_path = EXPERIMENT_DIR / "results.csv"
+        elif results_csv.strip() == "":
+            results_csv_path = None
+        else:
+            results_csv_path = Path(results_csv)
+
         return cls(
             task_ids=values.get("TABARENA_TASK_IDS"),
             max_instances=_int_env("TABARENA_MAX_INSTANCES", 0, values),
@@ -58,6 +70,9 @@ class TabArenaRunConfig:
             cache_mode=_str_env("TABARENA_CACHE_MODE", "default", values),
             repetitions_mode=_str_env("TABARENA_REPETITIONS_MODE", "TabArena-Lite", values),
             output_dir=Path(values.get("TABARENA_OUTPUT_DIR", str(default_output_dir))),
+            results_csv=results_csv_path,
+            results_scope=_str_env("TABARENA_RESULTS_SCOPE", default_results_scope, values),
+            results_notes=_str_env("TABARENA_RESULTS_NOTES", "", values),
             debug_mode=_bool_env("TABARENA_DEBUG_MODE", True, values),
             raise_on_failure=_bool_env("TABARENA_RAISE_ON_FAILURE", True, values),
         )
@@ -135,6 +150,12 @@ class JSON2VecConfig:
             "random_seed": self.random_seed,
         }
 
+    def label(self) -> str:
+        return (
+            f"json2vec_d{self.d_model}_b{self.batch_size}_"
+            f"lr{self.lr:g}_e{self.max_epochs}"
+        )
+
 
 @dataclass(frozen=True)
 class RandomForestConfig:
@@ -148,6 +169,11 @@ class RandomForestConfig:
             num_bag_folds=_int_env("RF_NUM_BAG_FOLDS", 2, values),
             num_random_configs=_int_env("RF_NUM_RANDOM_CONFIGS", 0, values),
         )
+
+    def label(self) -> str:
+        if self.num_random_configs == 0:
+            return "RandomForest_c1_BAG_L1"
+        return f"RandomForest_bag{self.num_bag_folds}_random{self.num_random_configs}"
 
 
 def default_tabarena_output_dir(name: str) -> Path:

@@ -8,6 +8,7 @@ from tabarena.utils.config_utils import ConfigGenerator, generate_holdout_experi
 
 from tabarena_json2vec import JSON2VecTabArenaModel
 from tabarena_json2vec.config import JSON2VecConfig, RandomForestConfig, TabArenaRunConfig
+from tabarena_json2vec.results import append_results_csv
 from tabarena_json2vec.tabarena import print_results, select_tasks
 
 
@@ -50,6 +51,7 @@ def run_tabarena(
     run_config: TabArenaRunConfig,
     model_experiments: Sequence[Any],
     allow_openml_suite: bool,
+    model_or_config: str,
 ) -> list[dict]:
     tasks = select_tasks(
         task_ids_env=run_config.task_ids,
@@ -67,6 +69,15 @@ def run_tabarena(
         debug_mode=run_config.debug_mode,
     )
     print_results(results)
+    if run_config.results_csv is not None:
+        append_results_csv(
+            run_config.results_csv,
+            scope=run_config.results_scope,
+            model_or_config=model_or_config,
+            results=results,
+            notes=run_config.results_notes,
+        )
+        print(f"Wrote result rows to {run_config.results_csv}", flush=True)
     return results
 
 
@@ -85,6 +96,7 @@ def run_json2vec_from_env(run_config: TabArenaRunConfig, model_config: JSON2VecC
         run_config=run_config,
         model_experiments=json2vec_experiments(model_config),
         allow_openml_suite=True,
+        model_or_config=model_config.label(),
     )
 
 
@@ -100,4 +112,5 @@ def run_random_forest_from_env(run_config: TabArenaRunConfig, model_config: Rand
         run_config=run_config,
         model_experiments=random_forest_experiments(model_config),
         allow_openml_suite=False,
+        model_or_config=model_config.label(),
     )

@@ -12,6 +12,11 @@ Use the existing sibling json2vec virtualenv:
 ../json2vec/.venv/bin/python
 ```
 
+Benchmark runner scripts append normalized result rows to
+`experiments/tabarena_json2vec/results.csv` by default. Set
+`TABARENA_RESULTS_SCOPE` and `TABARENA_RESULTS_NOTES` to label a run, or set
+`TABARENA_RESULTS_CSV=` to disable CSV export.
+
 ## Local Adapter Smoke Check
 
 ```bash
@@ -20,7 +25,7 @@ Use the existing sibling json2vec virtualenv:
 
 This trains a tiny binary classifier twice: once supervised-only and once with masked feature pretraining.
 
-## Best Focused json2vec Run
+## Focused json2vec Run
 
 ```bash
 TABARENA_CACHE_MODE=ignore \
@@ -35,13 +40,7 @@ JSON2VEC_RANDOM_SEED=0 \
 ../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/run_json2vec.py
 ```
 
-Expected result from local run:
-
-```text
-metric_error = 0.233947
-```
-
-## Best Masked-Pretraining Run
+## Masked-Pretraining Run
 
 ```bash
 TABARENA_CACHE_MODE=ignore \
@@ -59,12 +58,6 @@ JSON2VEC_PRETRAIN_LR=0.01 \
 ../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/run_json2vec.py
 ```
 
-Expected result from local run:
-
-```text
-metric_error = 0.259035
-```
-
 ## RandomForest Baseline
 
 ```bash
@@ -73,12 +66,6 @@ TABARENA_TASK_IDS=363621 \
 RF_NUM_BAG_FOLDS=2 \
 RF_NUM_RANDOM_CONFIGS=0 \
 ../json2vec/.venv/bin/python experiments/tabarena_json2vec/scripts/run_random_forest.py
-```
-
-Expected result from local run:
-
-```text
-metric_error = 0.314211
 ```
 
 ## 11 Small-Dataset json2vec Run

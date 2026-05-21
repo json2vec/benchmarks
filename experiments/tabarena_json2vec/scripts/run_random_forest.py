@@ -18,6 +18,7 @@ from tabarena_json2vec.runner import run_random_forest_from_env
 def main() -> None:
     run_config = TabArenaRunConfig.from_env(
         default_output_dir=default_tabarena_output_dir("tabarena_rf_out"),
+        default_results_scope="random_forest",
     )
     model_config = RandomForestConfig.from_env()
     run_random_forest_from_env(run_config=run_config, model_config=model_config)

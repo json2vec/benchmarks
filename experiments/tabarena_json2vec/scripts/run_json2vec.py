@@ -16,7 +16,10 @@ from tabarena_json2vec.runner import run_json2vec_from_env
 
 
 def main() -> None:
-    run_config = TabArenaRunConfig.from_env(default_output_dir=default_tabarena_output_dir("tabarena_out"))
+    run_config = TabArenaRunConfig.from_env(
+        default_output_dir=default_tabarena_output_dir("tabarena_out"),
+        default_results_scope="json2vec",
+    )
     model_config = JSON2VecConfig.from_env()
     run_json2vec_from_env(run_config=run_config, model_config=model_config)
 
