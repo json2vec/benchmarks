@@ -5,6 +5,19 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
 
+try:
+    from benchmark_common.env import bool_env as _bool_env
+    from benchmark_common.env import float_env as _float_env
+    from benchmark_common.env import int_env as _int_env
+    from benchmark_common.env import str_env as _str_env
+except ModuleNotFoundError:
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+    from benchmark_common.env import bool_env as _bool_env
+    from benchmark_common.env import float_env as _float_env
+    from benchmark_common.env import int_env as _int_env
+    from benchmark_common.env import str_env as _str_env
 from relbench_json2vec.paths import EXPERIMENT_DIR
 
 
@@ -14,27 +27,6 @@ DEFAULT_TASKS = (
     "rel-f1:driver-position",
     "rel-f1:results-position",
 )
-TRUE_VALUES = {"1", "true", "yes", "on"}
-
-
-def _bool_env(name: str, default: bool = False, env: Mapping[str, str] | None = None) -> bool:
-    values = os.environ if env is None else env
-    return values.get(name, str(int(default))).strip().lower() in TRUE_VALUES
-
-
-def _int_env(name: str, default: int, env: Mapping[str, str] | None = None) -> int:
-    values = os.environ if env is None else env
-    return int(values.get(name, str(default)))
-
-
-def _float_env(name: str, default: float, env: Mapping[str, str] | None = None) -> float:
-    values = os.environ if env is None else env
-    return float(values.get(name, str(default)))
-
-
-def _str_env(name: str, default: str, env: Mapping[str, str] | None = None) -> str:
-    values = os.environ if env is None else env
-    return values.get(name, default)
 
 
 def parse_task_specs(raw: str | None) -> tuple[tuple[str, str], ...]:

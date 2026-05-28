@@ -99,8 +99,15 @@ def _predictions_for_task(
     records: list[dict[str, Any]],
     classes: list[Any],
 ) -> np.ndarray:
-    outputs = model.predict(records)
-    target_outputs = outputs[target_address]
+    outputs = model.predict([[record] for record in records])
+    target_outputs = outputs.get(target_address)
+    if target_outputs is None:
+        target_outputs = outputs.get("__target__")
+    if target_outputs is None and len(outputs) == 1:
+        target_outputs = next(iter(outputs.values()))
+    if target_outputs is None:
+        available = ", ".join(map(str, outputs.keys()))
+        raise KeyError(f"target address {target_address!r} not found in prediction output; available: {available}")
     task_type = _task_type_value(task)
     if task_type == "regression":
         return np.asarray(target_outputs["content"], dtype=np.float32)

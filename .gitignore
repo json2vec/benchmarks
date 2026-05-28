@@ -1,6 +1,8 @@
 AutogluonModels/
 experiments/tabarena_json2vec/tabarena_out/
 experiments/tabarena_json2vec/tabarena_rf_out/
+experiments/relbench_json2vec/.venv/
 experiments/relbench_json2vec/relbench_cache/
+experiments/relbench_json2vec/runs/
 __pycache__/
 *.py[cod]

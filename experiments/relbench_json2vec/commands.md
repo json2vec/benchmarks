@@ -18,6 +18,35 @@ Install RelBench into that environment if needed:
 ../json2vec/.venv/bin/python -m pip install "relbench==2.1.2"
 ```
 
+For benchmark runs, prefer the isolated environment:
+
+```bash
+experiments/relbench_json2vec/scripts/setup_env.sh
+```
+
+## SDK Dry Run
+
+```bash
+experiments/relbench_json2vec/.venv/bin/python \
+  experiments/relbench_json2vec/scripts/benchmark.py run --dry-run
+```
+
+## Single-Task SDK Run
+
+```bash
+experiments/relbench_json2vec/.venv/bin/python \
+  experiments/relbench_json2vec/scripts/benchmark.py run \
+  --tasks rel-f1:driver-dnf
+```
+
+## SDK Report
+
+```bash
+experiments/relbench_json2vec/.venv/bin/python \
+  experiments/relbench_json2vec/scripts/benchmark.py report \
+  --results experiments/relbench_json2vec/runs/<run-id>/results.csv
+```
+
 ## Smoke Check
 
 ```bash

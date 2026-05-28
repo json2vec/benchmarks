@@ -13,6 +13,9 @@ link prediction, recommendation, GNN baselines, or hyperparameter search.
 - `relbench_json2vec/model.py`: trains json2vec and converts predictions to RelBench-compatible arrays.
 - `relbench_json2vec/baselines.py`: simple global/entity-history baselines.
 - `relbench_json2vec/runner.py`: shared task loading, execution, printing, and CSV export.
+- `relbench_json2vec/sdk.py`: manifest-driven run orchestration and report generation.
+- `scripts/benchmark.py`: stable CLI for `run`, `report`, and `inspect`.
+- `scripts/setup_env.sh`: isolated environment setup for RelBench runs.
 - `scripts/run_json2vec.py`: json2vec runner.
 - `scripts/run_baselines.py`: simple baseline runner.
 - `scripts/smoke_check.py`: local fake-task smoke check.
@@ -50,6 +53,10 @@ JSON2VEC_RELATION_DEPTH=1
 
 `RELBENCH_RESULTS_CSV` defaults to this experiment's `results.csv`. Set it to
 an empty string to disable CSV export.
+
+Run-local SDK outputs are written under ignored timestamped directories in
+`runs/`. The tracked `results.csv` is appended only when `benchmark.py run` is
+called with `--append-results`.
 
 ## Result Schema
 
