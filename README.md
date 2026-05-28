@@ -5,6 +5,7 @@ This repository contains benchmark integrations and result-export tooling for js
 ## Layout
 
 - `experiments/tabarena_json2vec/`: TabArena-Lite benchmark for the json2vec AutoGluon adapter.
+- `experiments/relbench_json2vec/`: RelBench entity/autocomplete benchmark for nested relational records.
 - `experiments/tabarena_json2vec/tabarena_json2vec/`: shared Python package for the TabArena adapter, typed config, runner logic, paths, and utility code.
 - `experiments/tabarena_json2vec/scripts/`: runnable entry points for json2vec, RandomForest, and smoke checks.
 - `experiments/tabarena_json2vec/results.csv`: benchmark result rows.
